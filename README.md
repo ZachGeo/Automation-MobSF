@@ -7,9 +7,9 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
 ## Requirements
 
 - **Ubuntu based Linux**
-  * Install git `sudo apt get install git`
-  * Install Python 3.6 - 3.7 `sudo apt-get install python`
-  * Install JDK 8+ `sudo apt-get install openjdk-8-jdk`
+  * Install git `sudo apt install git`
+  * Install Python 3.6 - 3.7 `sudo apt install python`
+  * Install JDK 8+ `sudo apt install openjdk-8-jdk`
   * Install the following dependencies `sudo apt install python3-venv python3-pip python3-dev build-essential libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev wkhtmltopdf
 `
   * Install Genymotion Android Emulator: [Genymotion Installation Guide](https://linuxhint.com/install_genymotion_android_emuator_ubuntu/)
