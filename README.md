@@ -23,6 +23,7 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
       chmod +x geckodriver
       export PATH=$PATH:/path-to-extracted-file/.
     ```
+  * Install curl `sudo apt install curl`    
   * Download & Install [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
     ```
       git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git 
