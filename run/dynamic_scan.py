@@ -1,76 +1,95 @@
 #!/usr/bin/python3
 
+from bs4 import BeautifulSoup as BS
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
-import time
+import requests
 import sys
+import time
 
-''' Pass sample_name argument from bash. '''
 name_sample = str(sys.argv[1])
 
-''' Run Firefox in the background. '''
+''' Run Firefox in the backgroung. '''
 fireFoxOptions = webdriver.FirefoxOptions()
 fireFoxOptions.set_headless()
 
-''' Navigate through Firefox in the below address. '''
+url = "http://localhost:8000"
+
+''' Firefox Session '''
 driver = webdriver.Firefox(firefox_options=fireFoxOptions)
-driver.get('http://localhost:8000/')
+driver.get(url)
 
-''' Dynamic Analysis '''
-dynamic_analyzer = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[3]/div/h6/a[2]").click()
+''' Function which getting every time the new url page. '''
+def pageContent(url):
+   page = requests.get(url)
+   return BS(page.content, 'html.parser')
 
-time.sleep(15)
-android_runtime = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[2]/div[1]/div/div/div/div/div[2]/p[1]/button").click()
+''' DYNAMIC ANALYSIS '''
+#1
+soup = pageContent(url)
 
-android_runtime_connect = driver.find_element_by_xpath("//*[@id='mobsfy']").click()
+dynamic_analyzer = soup.find("a", string="DYNAMIC ANALYZER")
+url = url + dynamic_analyzer['href']
 
-time.sleep(60)
-close_android_runtime = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/button").click()
+#2
+soup = pageContent(url)
+driver.get(url)
 
-search_sample = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[2]/div[2]/div/div[2]/div/div/div[1]/div[2]/div/label/input").send_keys(name_sample)
+android_runtime = driver.find_element_by_xpath('//button[contains(text(), "MobSFy Android Runtime")][@data-target="#mmobsfy"]').click()
 
-package_sample = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[2]/div[2]/div/div[2]/div/div/div[2]/div/table/tbody/tr/td[3]").text
+#3
+android_connect = driver.find_element_by_xpath('//button[contains(text(), "MobSFy!")][@id="mobsfy"]').click()
 
-start_dynamic_analysis = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[2]/div[2]/div/div[2]/div/div/div[2]/div/table/tbody/tr[1]/td[4]/a[1]").click()
-
-time.sleep(40)
-
-load_script_1 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[1]").click()
-load_script_2 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[2]").click()
-load_script_3 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[3]").click()
-load_script_4 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[4]").click()
-load_script_5 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[5]").click()
-load_script_6 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[6]").click()
-load_script_7 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[7]").click()
-load_script_8 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[8]").click()
-load_script_9 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[9]").click()
-load_script_10 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[10]").click()
-load_script_11 = driver.find_element_by_xpath("/html/body/div/div[1]/div[2]/div/div[4]/div/div[2]/div/div[2]/div[2]/select/option[11]").click()
-
-load_scripts = driver.find_element_by_xpath("//*[@id='loadscript']").click()
-
-auxiliary_option_1 = driver.find_element_by_xpath("//*[@id='enum_class']").click()
-auxiliary_option_2 = driver.find_element_by_xpath("//*[@id='string_catch']").click()
-auxiliary_option_3 = driver.find_element_by_xpath("//*[@id='string_compare']").click()
-auxiliary_option_4 = driver.find_element_by_xpath("//*[@id='enum_methods']").click()
-auxiliary_option_5 = driver.find_element_by_xpath("//*[@id='search_class']").click()
-auxiliary_option_6 = driver.find_element_by_xpath("//*[@id='trace_class']").click()
-
-start_instrumentation = driver.find_element_by_xpath("//*[@id='frida_spawn']").click()
-
-start_exported_activity_tester = driver.find_element_by_xpath("//*[@id='expactt']").click()
-time.sleep(60)
-start_activity_tester = driver.find_element_by_xpath("//*[@id='actt']").click()
-time.sleep(180)
-
-generate_report = driver.find_element_by_xpath("//*[@id='stop']").click()
-
+#4
 time.sleep(30)
-#download_dynamic_report = driver.find_element_by_xpath("/html/body/div/aside[1]/div/div[4]/div/div/nav/ul/li[9]/a").click()
+close_android_runtime = driver.find_element_by_xpath('//button[@class="close"]/span[contains(text(), "×")]').click()
 
-''' End of Dynamic Analysis '''
+#5
+search_sample = driver.find_element_by_xpath('//input[@type="search"][@class="form-control form-control-sm"]').send_keys(name_sample)
+
+#6
+package_sample = driver.find_element_by_xpath('//table[@id="DataTables_Table_0"]/tbody/tr/td[3]').text
+
+start_dynamic_analysis = soup.find("a", {"onclick": "dynamic_loader()"})
+url = url + start_dynamic_analysis['href']
+
+#7
+soup = pageContent(url)
+driver.get(url)
+time.sleep(5)
+
+select_scripts = driver.find_element_by_xpath('//select[@id="fd_scs"]')
+options = [x for x in select_scripts.find_elements_by_tag_name("option")]
+
+for option in options:
+   option.click()
+
+#8
+load_scripts = driver.find_element_by_xpath("//button[@id='loadscript']").click()
+
+#9
+auxiliary = driver.find_elements_by_xpath('//input[@name="auxiliary"][@type="checkbox"]')
+
+for check in auxiliary:
+   check.click()
+
+#10
+start_instrumentation = driver.find_element_by_xpath('//button[@id="frida_spawn"][@type="submit"]').click()
+
+#11
+start_exported_activity_tester = driver.find_element_by_xpath('//a[@id="expactt"][@role="button"]').click()
+
+#12
 time.sleep(60)
+start_activity_tester = driver.find_element_by_xpath('//a[@id="actt"][@role="button"]').click()
+
+#13
+time.sleep(240)
+generate_report = driver.find_element_by_xpath('//a[@id="stop"][@role="button"]').click()
+
+#14
+time.sleep(30)
 driver.quit()
 
 exit(package_sample)
