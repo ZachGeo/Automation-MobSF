@@ -21,15 +21,21 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
       wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
       tar -xvzf geckodriver*
       chmod +x geckodriver
-      export PATH=$PATH:/path-to-extracted-file/.
+      sudo mv geckodriver /usr/local/bin/.
     ```
   * Install curl `sudo apt install curl`    
-  * Download & Install [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
+  * Download [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
     ```
       git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git 
       cd Mobile-Security-Framework-MobSF
       ./setup.sh
      ```    
+   * Download [Automation-MobSF](https://github.com/ZachGeo/Automation-MobSF)
+   ```
+    git clone https://github.com/ZachGeo/Automation-MobSF
+    cd Automation-MobSF/run/
+    ./setup.sh
+   ```
 ## Run
 - `pm2 start ./run.sh`
 - `pm2 save`
