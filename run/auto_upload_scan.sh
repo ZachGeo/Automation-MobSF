@@ -9,6 +9,9 @@ ls ~/Mobile-Security-Framework-MobSF/uploads/ > ~/Automation-MobSF/scans_compari
 # Number of samples that I want to scan.
 num_samples=`find ~/Desktop/automation/APKs/ -type f | wc -l`
 
+# Authorization API Key.
+api_key=$(head -n 1 ~/Automation-MobSF/authorization_api_key.txt)
+
 # Loop over the number of samples. 
 for ((num=1; num<= "$num_samples"; num++));
 do
@@ -30,15 +33,15 @@ do
    if [ "$type_sample" == "ppx" ]; then type_sample="appx"; fi
 
    # Upload sample.
-   curl -F "file=@$test_sample" http://localhost:8000/api/v1/upload -H "Authorization: 7749e3e9e6db8c3fc2f890348d81f084cc3ad8a5abac4592f6ceea5659b12caf"
+   curl -F "file=@$test_sample" http://localhost:8000/api/v1/upload -H "Authorization:$authorization_api_key"
 
    # Scan sample. Static Analysis
    sleep 1m
-   curl -X POST --url http://localhost:8000/api/v1/scan --data "scan_type=$type_sample&file_name=$name_sample&hash=$sample_md5" -H "Authorization: 7749e3e9e6db8c3fc2f890348d81f084cc3ad8a5abac4592f6ceea5659b12caf"
+   curl -X POST --url http://localhost:8000/api/v1/scan --data "scan_type=$type_sample&file_name=$name_sample&hash=$sample_md5" -H "Authorization:$authorization_api_key"
 
    # Run scrit to check the Security Static Score of the sample.
    sleep 2m
-   python3 ~/Desktop/automation/run/static_score.py "$sample_md5"
+   #python3 ~/Desktop/automation/run/static_score.py "$sample_md5"
 
    # Run script to start Dynamic Analysis
    sleep 2m
@@ -46,6 +49,6 @@ do
 
    # Run script to download Static and Dynamic Report.
    sleep 10m
-   python3 ~/Automation-MobSF/run/scan_to_pdf.py "$sample_md5" "$package_sample"
+   python3 ~/Automation-MobSF/run/reports.py "$sample_md5" "$package_sample" "$authorization_api_key"
   fi
 done
