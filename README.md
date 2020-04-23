@@ -1,7 +1,7 @@
 # Automation-MobSF
 Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
 
-[![python](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/)
+[![python](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/)
 [![platform](https://img.shields.io/badge/platform-linux-green.svg)](https://github.com/ZachGeo/Automation-MobSF)
 
 ## Requirements
