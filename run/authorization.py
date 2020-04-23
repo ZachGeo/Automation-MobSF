@@ -1,6 +1,6 @@
-#!/usr/bin/python3
-
 ''' Extract API Authorization Key '''
+
+#!/usr/bin/python3
 
 from bs4 import BeautifulSoup as BS
 import requests
