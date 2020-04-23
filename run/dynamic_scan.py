@@ -20,10 +20,23 @@ url = "http://localhost:8000"
 driver = webdriver.Firefox(firefox_options=fireFoxOptions)
 driver.get(url)
 
-''' Function which getting every time the new url page. '''
+''' FUNCTION SESSION '''
+
+# Function which getting every time the new url page.
 def pageContent(url):
    page = requests.get(url)
    return BS(page.content, 'html.parser')
+
+# Function which make the script wait until is ready to move on.
+def checkTest():
+   check = "wait"
+   while check == "wait":
+       check_txt = driver.find_element_by_xpath('//textarea[@id="stat"]').text
+       if "No Exported Activites found" in check_txt or "Exported Activity testing completed." in check_txt or "No Activites found" in check_txt or "Activity testing completed" in check_txt or "Generating Report...Please Wait!" in check_txt or "Sucessfully created MobSF Dynamic Analysis enviroment." in check_txt:
+           check = "continue"
+   print("~ RUNNING ~")
+
+''' END FUNCTION SESSION '''
 
 ''' DYNAMIC ANALYSIS '''
 #1
@@ -41,8 +54,9 @@ android_runtime = driver.find_element_by_xpath('//button[contains(text(), "MobSF
 #3
 android_connect = driver.find_element_by_xpath('//button[contains(text(), "MobSFy!")][@id="mobsfy"]').click()
 
+checkTest()
+
 #4
-time.sleep(30)
 close_android_runtime = driver.find_element_by_xpath('//button[@class="close"]/span[contains(text(), "×")]').click()
 
 #5
@@ -80,16 +94,19 @@ start_instrumentation = driver.find_element_by_xpath('//button[@id="frida_spawn"
 #11
 start_exported_activity_tester = driver.find_element_by_xpath('//a[@id="expactt"][@role="button"]').click()
 
+checkTest()
+
 #12
-time.sleep(60)
 start_activity_tester = driver.find_element_by_xpath('//a[@id="actt"][@role="button"]').click()
 
+checkTest()
+
 #13
-time.sleep(240)
 generate_report = driver.find_element_by_xpath('//a[@id="stop"][@role="button"]').click()
 
+checkTest()
+
 #14
-time.sleep(30)
 driver.quit()
 
 exit(package_sample)
