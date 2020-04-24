@@ -66,3 +66,7 @@ do
    python3 ~/Automation-MobSF/run/reports.py "$sample_md5" "$package_sample" "$authorization_api_key";
   fi
 done
+
+# [PM2] - Wait until scanning of all all samples is done. 
+wait=$(( $num_samples * 10 ))
+sleep "$wait"m
