@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Wait for Emulator to be loaded.
+echo "$(tput setaf 2)[MESSAGE]:$(tput setaf 7) Wait Emulator to be loaded."
+sleep 1m
+
 # Calculate the md5 hash value of each sample and create a txt file whcich contains the md5 and the path of each sample.
 find ~/Automation-MobSF/APKs -type f -exec md5sum {} + | sort -k 2 > ~/Automation-MobSF/scans_comparison/samples.txt;
 
