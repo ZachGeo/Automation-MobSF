@@ -68,6 +68,10 @@ do
    #sleep 10m
    echo "CREATE REPORTS:$(tput setaf 6) STEP 4 OUT OF 4";
    python3 ~/Automation-MobSF/run/reports.py "$sample_md5" "$package_sample" "$authorization_api_key";
+  
+   # Run androguard script to create a decompiled version of an APK and  
+   # generate control flow graphs (CFG) for each method.
+   bash ./androguard_dec_cfg.sh "$test_sample" "$sample_md5"
   fi
 done
 
