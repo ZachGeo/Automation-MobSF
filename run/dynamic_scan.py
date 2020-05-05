@@ -27,7 +27,7 @@ def pageContent(url):
    page = requests.get(url)
    return BS(page.content, 'html.parser')
 
-# Function which make the script wait until is ready to move on.
+# Function which make the script wait until is ready to move on. ????
 def checkTest():
    check = "wait"
    while check == "wait":
@@ -54,7 +54,8 @@ android_runtime = driver.find_element_by_xpath('//button[contains(text(), "MobSF
 #3
 android_connect = driver.find_element_by_xpath('//button[contains(text(), "MobSFy!")][@id="mobsfy"]').click()
 
-checkTest()
+#checkTest()
+time.sleep(20)
 
 #4
 close_android_runtime = driver.find_element_by_xpath('//button[@class="close"]/span[contains(text(), "×")]').click()
@@ -71,7 +72,7 @@ url = url + start_dynamic_analysis['href']
 #7
 soup = pageContent(url)
 driver.get(url)
-time.sleep(5)
+time.sleep(10)
 
 select_scripts = driver.find_element_by_xpath('//select[@id="fd_scs"]')
 options = [x for x in select_scripts.find_elements_by_tag_name("option")]
@@ -94,17 +95,20 @@ start_instrumentation = driver.find_element_by_xpath('//button[@id="frida_spawn"
 #11
 start_exported_activity_tester = driver.find_element_by_xpath('//a[@id="expactt"][@role="button"]').click()
 
-checkTest()
+#checkTest()
+time.sleep(60)
 
 #12
 start_activity_tester = driver.find_element_by_xpath('//a[@id="actt"][@role="button"]').click()
 
-checkTest()
+#checkTest()
+time.sleep(300)
 
 #13
 generate_report = driver.find_element_by_xpath('//a[@id="stop"][@role="button"]').click()
 
-checkTest()
+#checkTest()
+time.sleep(60)
 
 #14
 driver.quit()
