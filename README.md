@@ -40,7 +40,7 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
       ./setup.sh
      ```    
      > Added Static Tool: [Decompile APKs and Create CFG - Androguard](https://androguard.readthedocs.io/en/latest/tools/androdd.html) 
-     > Official [MobSF]((https://github.com/MobSF/Mobile-Security-Framework-MobSF))
+     > Official [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
    * Download [Automation-MobSF](https://github.com/ZachGeo/Automation-MobSF)
      ```
       git clone https://github.com/ZachGeo/Automation-MobSF
@@ -64,8 +64,15 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
 - `pm2 start ./auto_upload_scan.sh`
 - `pm2 save`
 
+## Start Analysis
+- Option 1: User Interface - Manually.
+  - Open Browser.
+  - Type: localhost:8000
+  - Upload & Scan a sample based on the documentation of MobSF.
+- Option 2: Command Line - Automatically.
+  - Move your Sample into the directory `~/Automation-MobSF/APKs` & wait for the reports.
+
 ## Tranfer samples to APKs directory, in order to start the static & dynamic analysis
 - `python3 -m http.server 8080`
 - `cd <path of the sample which you want to scan>`
 - `~/Automation-MobSF/transfer.sh <name of the sample>`
-##### Note: After every two minutes you have to re-start the HTTP SERVER with Port access 8080,  if you want to transfer a new sample.
