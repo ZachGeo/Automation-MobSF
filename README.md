@@ -35,14 +35,17 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
   * Install curl `sudo apt install curl`    
   * Download [MobSF](https://github.com/ZachGeo/Mobile-Security-Framework-MobSF)
     ```
+      cd 
       git clone https://github.com/ZachGeo/Mobile-Security-Framework-MobSF 
       cd Mobile-Security-Framework-MobSF
       ./setup.sh
      ```    
      > Added Static Tool: [Decompile APKs and Create CFG - Androguard](https://androguard.readthedocs.io/en/latest/tools/androdd.html) 
-     > Official [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
+     
+     > Official Repository of [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
    * Download [Automation-MobSF](https://github.com/ZachGeo/Automation-MobSF)
      ```
+      cd
       git clone https://github.com/ZachGeo/Automation-MobSF
       cd Automation-MobSF/run/
       chmod +x setup.sh
@@ -65,14 +68,13 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
 - `pm2 save`
 
 ## Start Analysis
-- Option 1: User Interface - Manually.
+- **Option 1**: User Interface - Manually.
   - Open Browser.
   - Type: localhost:8000
   - Upload & Scan a sample based on the documentation of MobSF.
-- Option 2: Command Line - Automatically.
+- **Option 2**: Command Line - Automatically.
   - Move your Sample into the directory `~/Automation-MobSF/APKs` & wait for the reports.
 
-## Tranfer samples to APKs directory, in order to start the static & dynamic analysis
-- `python3 -m http.server 8080`
-- `cd <path of the sample which you want to scan>`
-- `~/Automation-MobSF/transfer.sh <name of the sample>`
+## Remote tranfer samples to APKs directory, in order to start the static & dynamic analysis automatically.
+- `$ scp <your sample> zach@malwareandroid:~/Automation-MobSF/APKs/`
+- Password for zach@malwareandroid: `<password>`
