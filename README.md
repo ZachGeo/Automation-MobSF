@@ -33,13 +33,14 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
       sudo mv geckodriver /usr/local/bin/.
     ```
   * Install curl `sudo apt install curl`    
-  * Download [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
+  * Download [MobSF](https://github.com/ZachGeo/Mobile-Security-Framework-MobSF)
     ```
-      git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git 
+      git clone https://github.com/ZachGeo/Mobile-Security-Framework-MobSF 
       cd Mobile-Security-Framework-MobSF
       ./setup.sh
      ```    
      > Added Static Tool: [Decompile APKs and Create CFG - Androguard](https://androguard.readthedocs.io/en/latest/tools/androdd.html) 
+     > Official [MobSF]((https://github.com/MobSF/Mobile-Security-Framework-MobSF))
    * Download [Automation-MobSF](https://github.com/ZachGeo/Automation-MobSF)
      ```
       git clone https://github.com/ZachGeo/Automation-MobSF
