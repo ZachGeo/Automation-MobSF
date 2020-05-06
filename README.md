@@ -39,13 +39,14 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
       cd Mobile-Security-Framework-MobSF
       ./setup.sh
      ```    
+     > Added Static Tool: [Decompile APKs and Create CFG - Androguard](https://androguard.readthedocs.io/en/latest/tools/androdd.html) 
    * Download [Automation-MobSF](https://github.com/ZachGeo/Automation-MobSF)
-    ```
-     git clone https://github.com/ZachGeo/Automation-MobSF
-     cd Automation-MobSF/run/
-     chmod +x setup.sh
-     ./setup.sh
-    ```
+     ```
+      git clone https://github.com/ZachGeo/Automation-MobSF
+      cd Automation-MobSF/run/
+      chmod +x setup.sh
+      ./setup.sh
+     ```
     
 ## Run
 - `cd ~/Automation-MobSF/`
