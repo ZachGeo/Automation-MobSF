@@ -10,9 +10,9 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
   * Install git `sudo apt install git`
   * Install Python 3.6 `sudo apt install python`
   * Install JDK 8+ `sudo apt install openjdk-8-jdk`
-  * Install the following dependencies `sudo apt install python3-venv python3-pip python3-dev build-essential libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev wkhtmltopdf
-  * Install Graph Visualization Software `sudo apt-get install graphviz`
-`
+  * Install the following dependencies `sudo apt install python3-venv python3-pip python3-dev build-essential libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev wkhtmltopdf`
+  * Install Graph Visualization Software `sudo apt install graphviz`
+  * Install ADB Tool: `sudo apt install adb`
   * Android Emulator Options:  
     >*Recommended using Android 7.0 and above.*
     * Download & Install Android Studio: [Android Studio Download Guide](https://linuxize.com/post/how-to-install-android-studio-on-ubuntu-18-04/)
@@ -75,6 +75,15 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
 - **Option 2**: Command Line - Automatically.
   - Move your Sample into the directory `~/Automation-MobSF/APKs` & wait for the reports.
 
+---
+
 ## Remote tranfer samples to APKs directory, in order to start the static & dynamic analysis automatically.
 - `$ scp <your sample> zach@malwareandroid:~/Automation-MobSF/APKs/`
 - Password for zach@malwareandroid: `<password>`
+
+## Android Studio Emulator Info:
+- Start emulator in order to have a writable system image during your emulation session: `-writable-system`
+- Disable the Quick Boot and performs Cold Boot, without loading or saving the emulator state: `-no-snapshot`
+- Wipe Data from the emulator at start: `-wipe-data`
+- Find adb emulator name: `adb devices`
+- Stop Emulator: `adb -s <emulator adb name> emu kill`
