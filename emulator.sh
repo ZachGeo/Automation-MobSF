@@ -2,4 +2,5 @@
 
 cd ~/Android/Sdk/emulator/
 
-./emulator -avd mobsf -writable-system -no-snapshot
+# Start Emulator in cold boot, writable mode and with wipe data.
+./emulator -avd mobsf -wipe-data -writable-system -no-snapshot
