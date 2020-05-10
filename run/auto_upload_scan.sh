@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if there are any uploaded files and move them into APKs directory.
+if [ -z "$(ls -A /var/www/tutorial/upload/uploads)" ]; then
+  echo "$(tput setaf 3)MESSAGE: $(tput setaf 7)[There are not any uploaded samples.]"
+else
+  mv -v /var/www/tutorial/upload/uploads/* ~/Automation-MobSF/APKs/
+  echo "$(tput setaf 4)MESSAGE: $(tput setaf 7)[Uploaded samples moved into APKS directory.]"
+
 # Supported mobile app binaries - APK, IPA, APPX. Remove any other file extension from APKs directory
 find ~/Automation-MobSF/APKs/ -type f ! -name "*.apk" ! -name "*.appx" ! -name $
 
@@ -60,10 +67,12 @@ if [[ $num_samples != 0 ]]; then
       
       # Move Dynamic report to reports directory.
       mv Dynamic.pdf ~/Automation-MobSF/reports/"$sample_md5"/
-  
-      # Run androguard script to create a decompiled version of an APK and  
-      # generate control flow graphs (CFG) for each method.
-      #bash ./androguard_dec_cfg.sh "$test_sample" "$sample_md5";
+
+      # Kill emulator, in order to start the new analysis.
+      # The emulator start with wipe-data.
+      adb -s emulator-5554 emu kill;
+      echo "$(tput setaf 3)MESSAGE: $(tput setaf 6) [Kill Emulator & Wait to be Loaded Again.]";
+      sleep 1m;
      fi
    done
 else
