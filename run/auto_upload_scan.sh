@@ -7,8 +7,8 @@ else
   mv -v /var/www/tutorial/upload/uploads/* ~/Automation-MobSF/APKs/
   echo "$(tput setaf 4)MESSAGE: $(tput setaf 7)[Uploaded samples moved into APKS directory.]"
 
-# Supported mobile app binaries - APK, IPA, APPX. Remove any other file extension from APKs directory
-find ~/Automation-MobSF/APKs/ -type f ! -name "*.apk" ! -name "*.appx" ! -name $
+# Supported Android app binaries - APK. Remove any other file extension from APKs directory
+find ~/Automation-MobSF/APKs/ -type f ! -name "*.apk";
 
 # Number of samples that I want to scan.
 num_samples=$(find ~/Automation-MobSF/APKs/ -type f | wc -l);
