@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from seenium.webdriver.firefox.options import Options
+ 
 import os
 import pdfkit
 import sys
