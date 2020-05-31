@@ -47,8 +47,6 @@ if [[ $num_samples != 0 ]]; then
       name_sample="${sample_path:35}"
       type_sample="${sample_path: -3}"
 
-      if [ "$type_sample" == "ppx" ]; then type_sample="appx"; fi
-
       # Upload sample.
       echo "UPLOAD SAMPLE:$(tput setaf 6) STEP 1 OUT OF 4"
       curl -F "file=@$test_sample" http://localhost:8000/api/v1/upload -H "Authorization:$api_key";
