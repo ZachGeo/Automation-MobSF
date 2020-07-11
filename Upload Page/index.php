@@ -10,46 +10,50 @@ include "supload.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Sample</title>
+    <title>Automation-MobSF</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <span class="navbar-brand-center mb-0 h1">Automation-MobSF</span>
-    </nav>
 
-    <div class="alert alert-dark" role="alert">
+    <footer id="sticky-footer" class="py-1 bg-dark text-light">
+        <div class="container text-center">
+            <h2>Automation-MobSF</h2>
+        </div>
+    </footer>
+    
+    <div class="alert alert-light p-1 text-primary" role="alert">
         <?php
-            if ( isset ($_SESSION['upload_message']) ){
+            if ( isset($_SESSION['upload_message']) ){
                 $uploaded = $_SESSION['upload_message'];
-                $upload_msg - $name . " " . $uploaded;
+                $upload_msg = $name . " " . $uploaded . ". The " . $name . " will get analyzed shortly!";
                 echo "$upload_msg";
-            } elseif( isset ($_SESSION['error_message']) ){
+            } elseif( isset($_SESSION['error_message']) ){
                 $error = $_SESSION['error_message'];
-            } else{
-                echo "";
+                echo "$error";
             }
         ?>
     </div>
 
     <form action="" method="POST" enctype="multipart/form-data">
-            <input type="file" name="sample">
-            <p>Drag your files here or click in this area.</p>
-            <button type="submit" name="submit">UPLOAD</button>
+            <input type="file" name="sample" id="file-upload">
+            <h4>Upload & Analyze Sample</h4>
+            <p>Drag your file here or click in this area.</p>
+            <button type="submit" name="submit" id="upload-btn">UPLOAD</button>
     </form>
 
-    <footer id="sticky-footer" class="py-4 bg-secondary text-white-50">
-            <div class="container text-center">
-                <small>Automation-MobSF - Upload Sample & Analyze</small>
-            </div>
-    </footer>
+    <div style="position: relative">
+        <p id="info"> BACHELOR THESIS - ZACHARIAS GEORGOPOULOS - UNIVERSITY OF PATRAS</p>
+    </div>
 
     <script>
         $(document).ready(function(){
-            $('form input').change(function (){
-                $('form p').text(this.files.length + " file(s) selected");
+            $('#file-upload').change(function (){
+                var selectedfile = $('#file-upload')[0].files[0].name;
+                $('form p').text(selectedfile + " file has been selected!");
             });
         });
     </script>
