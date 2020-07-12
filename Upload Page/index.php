@@ -29,7 +29,7 @@ include "supload.php";
         <?php
             if ( isset($_SESSION['upload_message']) ){
                 $uploaded = $_SESSION['upload_message'];
-                $upload_msg = $name . " " . $uploaded . ". The " . $name . " will get analyzed shortly!";
+                $upload_msg = $uploaded . ". The " . $name . " will get analyzed shortly!";
                 echo "$upload_msg";
             } elseif( isset($_SESSION['error_message']) ){
                 $error = $_SESSION['error_message'];
