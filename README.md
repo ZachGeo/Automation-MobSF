@@ -24,7 +24,7 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
        * `cd ~/Android/Sdk/emulator`
        * `emulator -list-avds`
   * Install npm `sudo apt install npm`
-  * Install pm2 `npm install pm2 -g`
+  * Install pm2 `npm install pm2 -g` or `wget -qO- https://getpm2.com/install.sh | bash`
   * Download [geckodriver](https://github.com/mozilla/geckodriver)
     ```
       wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
@@ -74,12 +74,6 @@ Automate Static &amp; Dynamic Analysis of the Mobile-Security-Framework
   - Upload & Scan a sample based on the documentation of MobSF.
 - **Option 2**: Command Line - Automatically.
   - Move your Sample into the directory `~/Automation-MobSF/APKs` & wait for the reports.
-
----
-
-## Remote tranfer samples to APKs directory, in order to start the static & dynamic analysis automatically.
-- `$ scp <your sample> zach@malwareandroid:~/Automation-MobSF/APKs/`
-- Password for zach@malwareandroid: `<password>`
 
 ## Android Studio Emulator Info:
 - Start emulator in order to have a writable system image during your emulation session: `-writable-system`
